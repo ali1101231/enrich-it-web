@@ -107,9 +107,9 @@ const Navbar = () => {
                 {label}
               </a>
             ))}
-            <div className="flex gap-2 pt-2">
-              <Button variant="ghost" size="sm" className="flex-1">Login</Button>
-              <Button className="flex-1 bg-foreground text-background hover:bg-foreground/90 rounded-full text-xs">Get Started</Button>
+            <div className="flex gap-2 pt-2 items-center h-12">
+              <GlowButton className="flex-1">Login</GlowButton>
+              <Button className="flex-1 h-full bg-foreground text-background hover:bg-foreground/90 rounded-[47px] text-xs">Get Started</Button>
             </div>
           </div>
         )}
