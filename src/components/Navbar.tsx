@@ -75,7 +75,9 @@ const Navbar = () => {
             <Button variant="ghost" size="icon" onClick={toggle} className="rounded-full h-8 w-8">
               {theme === "dark" ? <Sun size={15} /> : <Moon size={15} />}
             </Button>
-            <span className="text-sm text-muted-foreground hover:text-foreground cursor-pointer transition-colors">Login</span>
+            <div className="h-8 flex items-center">
+              <GlowButton>Login</GlowButton>
+            </div>
             <Button className="bg-foreground text-background hover:bg-foreground/90 rounded-full px-4 h-8 text-xs font-medium gap-1">
               Get 1,000 credits free <ChevronRight size={13} />
             </Button>
