@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Moon, Sun } from "lucide-react";
 import { useTheme } from "@/hooks/use-theme";
-import { Link } from "react-router-dom";
 
 const navLinks = ["Product", "Solutions", "Pricing", "Docs", "Blog"];
 
@@ -14,7 +13,7 @@ const Navbar = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 glass-strong">
       <div className="container mx-auto flex items-center justify-between h-16 px-4">
         <div className="flex items-center gap-8">
-          <Link to="/" className="text-xl font-bold gradient-text">Koldify</Link>
+          <span className="text-xl font-bold gradient-text">Koldify</span>
           <div className="hidden md:flex items-center gap-6">
             {navLinks.map((link) => (
               <a key={link} href={`#${link.toLowerCase()}`} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
@@ -27,12 +26,8 @@ const Navbar = () => {
           <Button variant="ghost" size="icon" onClick={toggle} className="rounded-full">
             {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
           </Button>
-          <Link to="/sign-in">
-            <Button variant="ghost" size="sm">Sign In</Button>
-          </Link>
-          <Link to="/sign-up">
-            <Button variant="hero" size="sm">Get Started</Button>
-          </Link>
+          <Button variant="ghost" size="sm">Sign In</Button>
+          <Button variant="hero" size="sm">Get Started</Button>
         </div>
         <div className="flex md:hidden items-center gap-2">
           <Button variant="ghost" size="icon" onClick={toggle} className="rounded-full">
@@ -51,12 +46,8 @@ const Navbar = () => {
             </a>
           ))}
           <div className="flex gap-2 pt-2">
-            <Link to="/sign-in" className="flex-1">
-              <Button variant="ghost" size="sm" className="w-full">Sign In</Button>
-            </Link>
-            <Link to="/sign-up" className="flex-1">
-              <Button variant="hero" size="sm" className="w-full">Get Started</Button>
-            </Link>
+            <Button variant="ghost" size="sm" className="flex-1">Sign In</Button>
+            <Button variant="hero" size="sm" className="flex-1">Get Started</Button>
           </div>
         </div>
       )}
