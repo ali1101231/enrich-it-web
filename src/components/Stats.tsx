@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 
 const stats = [
-  { value: 250, suffix: "M+", label: "Contacts" },
-  { value: 60, suffix: "M+", label: "Companies" },
-  { value: 99, suffix: "%", label: "Email Accuracy" },
-  { value: 120, suffix: "+", label: "Countries" },
+  { value: 250, suffix: "M+", label: "Contacts in database" },
+  { value: 60, suffix: "M+", label: "Companies enriched" },
+  { value: 99, suffix: "%", label: "Email accuracy" },
+  { value: 120, suffix: "+", label: "Countries covered" },
 ];
 
 const AnimatedNumber = ({ target, suffix }: { target: number; suffix: string }) => {
@@ -39,7 +39,7 @@ const AnimatedNumber = ({ target, suffix }: { target: number; suffix: string }) 
   }, [target]);
 
   return (
-    <div ref={ref} className="text-4xl sm:text-5xl lg:text-6xl font-extrabold gradient-text">
+    <div ref={ref} className="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-display gradient-text leading-none">
       {count}{suffix}
     </div>
   );
@@ -48,12 +48,13 @@ const AnimatedNumber = ({ target, suffix }: { target: number; suffix: string }) 
 const Stats = () => (
   <section className="py-24 lg:py-32">
     <div className="container mx-auto px-4">
-      <div className="glass rounded-2xl p-8 sm:p-12 lg:p-16">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-4">
+      <div className="bg-card rounded-3xl border border-border/50 p-10 sm:p-14 lg:p-20 relative overflow-hidden">
+        <div className="absolute inset-0 bg-grid opacity-[0.03]" />
+        <div className="relative grid grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-6">
           {stats.map(({ value, suffix, label }) => (
             <div key={label} className="text-center">
               <AnimatedNumber target={value} suffix={suffix} />
-              <p className="text-sm text-muted-foreground mt-2">{label}</p>
+              <p className="text-sm text-muted-foreground mt-3 font-medium">{label}</p>
             </div>
           ))}
         </div>
