@@ -60,19 +60,19 @@ export function GlowButton({ children, onClick, className = "", disabled = false
         .glow-glass-pill {
           position: relative;
           padding: 10px 24px;
-          background: rgba(15, 15, 15, 0.85);
+          background: rgba(255, 255, 255, 0.95);
           backdrop-filter: blur(20px);
           border-radius: 47px;
-          border: 1px solid rgba(255, 255, 255, 0.15);
+          border: 1px solid rgba(0, 0, 0, 0.08);
           display: flex;
           align-items: center;
           justify-content: center;
           cursor: pointer;
           overflow: hidden;
           box-shadow: 
-            0 25px 50px -12px rgba(0, 0, 0, 0.9),
-            inset 0 1px 1px rgba(255, 255, 255, 0.15);
-          color: #ffffff;
+            0 4px 12px -4px rgba(0, 0, 0, 0.1),
+            inset 0 1px 1px rgba(255, 255, 255, 0.8);
+          color: #1a1a1a;
           font-family: 'Inter', sans-serif;
           font-weight: 500;
           font-size: 14px;
