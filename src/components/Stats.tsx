@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
 
 const stats = [
   { value: 250, suffix: "M+", label: "Contacts" },
@@ -17,7 +18,6 @@ const AnimatedNumber = ({ target, suffix }: { target: number; suffix: string }) 
       ([entry]) => {
         if (entry.isIntersecting && !started.current) {
           started.current = true;
-          const duration = 1500;
           const steps = 40;
           const increment = target / steps;
           let current = 0;
@@ -29,7 +29,7 @@ const AnimatedNumber = ({ target, suffix }: { target: number; suffix: string }) 
             } else {
               setCount(Math.floor(current));
             }
-          }, duration / steps);
+          }, 1500 / steps);
         }
       },
       { threshold: 0.5 }
@@ -48,16 +48,29 @@ const AnimatedNumber = ({ target, suffix }: { target: number; suffix: string }) 
 const Stats = () => (
   <section className="py-24 lg:py-32">
     <div className="container mx-auto px-4">
-      <div className="glass rounded-2xl p-8 sm:p-12 lg:p-16">
+      <motion.div
+        initial={{ opacity: 0, y: 30, scale: 0.95 }}
+        whileInView={{ opacity: 1, y: 0, scale: 1 }}
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{ duration: 0.6, type: "spring" }}
+        className="glass rounded-2xl p-8 sm:p-12 lg:p-16"
+      >
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-4">
-          {stats.map(({ value, suffix, label }) => (
-            <div key={label} className="text-center">
+          {stats.map(({ value, suffix, label }, i) => (
+            <motion.div
+              key={label}
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1, duration: 0.5, type: "spring", stiffness: 200 }}
+              className="text-center"
+            >
               <AnimatedNumber target={value} suffix={suffix} />
               <p className="text-sm text-muted-foreground mt-2">{label}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
-      </div>
+      </motion.div>
     </div>
   </section>
 );
