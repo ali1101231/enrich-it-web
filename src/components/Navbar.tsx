@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Moon, Sun, ChevronRight } from "lucide-react";
 import { useTheme } from "@/hooks/use-theme";
+import { GlowButton } from "@/components/ui/glow-button";
 
 const navLinks = [
   { label: "Pricing", href: "#pricing" },
@@ -74,7 +75,9 @@ const Navbar = () => {
             <Button variant="ghost" size="icon" onClick={toggle} className="rounded-full h-8 w-8">
               {theme === "dark" ? <Sun size={15} /> : <Moon size={15} />}
             </Button>
-            <span className="text-sm text-muted-foreground hover:text-foreground cursor-pointer transition-colors">Login</span>
+            <div className="h-8 flex items-center">
+              <GlowButton>Login</GlowButton>
+            </div>
             <Button className="bg-foreground text-background hover:bg-foreground/90 rounded-full px-4 h-8 text-xs font-medium gap-1">
               Get 1,000 credits free <ChevronRight size={13} />
             </Button>
@@ -104,9 +107,9 @@ const Navbar = () => {
                 {label}
               </a>
             ))}
-            <div className="flex gap-2 pt-2">
-              <Button variant="ghost" size="sm" className="flex-1">Login</Button>
-              <Button className="flex-1 bg-foreground text-background hover:bg-foreground/90 rounded-full text-xs">Get Started</Button>
+            <div className="flex gap-2 pt-2 items-center h-12">
+              <GlowButton className="flex-1">Login</GlowButton>
+              <Button className="flex-1 h-full bg-foreground text-background hover:bg-foreground/90 rounded-[47px] text-xs">Get Started</Button>
             </div>
           </div>
         )}
