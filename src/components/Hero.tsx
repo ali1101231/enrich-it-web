@@ -47,7 +47,7 @@ const Hero = () => {
             <div className="flex items-center gap-2 text-xs">
               <Mail size={14} className="text-primary" />
               <span className="text-muted-foreground">Email verified</span>
-              <span className="text-green-400 text-[10px]">✓ 99.2%</span>
+              <span className="text-emerald-400 text-[10px]">✓ 99.2%</span>
             </div>
           </FloatingCard>
           <FloatingCard className="absolute top-1/3 right-8 xl:right-16" style={{ animationDelay: "2s" } as React.CSSProperties}>
