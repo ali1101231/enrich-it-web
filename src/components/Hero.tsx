@@ -1,5 +1,11 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Play, Zap, Shield, Globe } from "lucide-react";
+import { ArrowRight, Play, Zap, Shield, Globe, Mail, Building2, Users } from "lucide-react";
+
+const FloatingCard = ({ children, className, style }: { children: React.ReactNode; className?: string; style?: React.CSSProperties }) => (
+  <div className={`bg-card/80 backdrop-blur-xl border border-border/50 rounded-2xl px-4 py-3 shadow-xl animate-float ${className}`} style={style}>
+    {children}
+  </div>
+);
 
 const badges = [
   { icon: Zap, text: "Real-time enrichment" },
@@ -9,7 +15,6 @@ const badges = [
 
 const Hero = () => (
   <section className="relative min-h-[92vh] flex items-center justify-center overflow-hidden pt-16">
-    {/* Background */}
     <div className="absolute inset-0 bg-grid opacity-20" />
     <div className="absolute inset-0 hero-glow" />
     <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-primary/[0.06] blur-[120px]" />
@@ -17,7 +22,6 @@ const Hero = () => (
 
     <div className="container mx-auto px-4 relative z-10">
       <div className="max-w-3xl mx-auto text-center">
-        {/* Badge */}
         <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.06] px-4 py-1.5 text-xs font-medium text-primary mb-8 opacity-0 animate-fade-up" style={{ animationDelay: "0.1s" }}>
           <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse-glow" />
           Now with AI-powered enrichment
@@ -42,7 +46,6 @@ const Hero = () => (
           </Button>
         </div>
 
-        {/* Trust badges */}
         <div className="flex items-center justify-center gap-6 mt-12 opacity-0 animate-fade-up" style={{ animationDelay: "0.65s" }}>
           {badges.map(({ icon: Icon, text }) => (
             <div key={text} className="flex items-center gap-2 text-xs text-muted-foreground">
@@ -51,6 +54,29 @@ const Hero = () => (
             </div>
           ))}
         </div>
+      </div>
+
+      {/* Floating cards */}
+      <div className="hidden lg:block">
+        <FloatingCard className="absolute top-[28%] left-8 xl:left-16" style={{ animationDelay: "0s" }}>
+          <div className="flex items-center gap-2.5 text-xs">
+            <Mail size={15} className="text-primary" />
+            <span className="text-muted-foreground font-medium">Email verified</span>
+            <span className="text-accent text-[11px] font-semibold">✓ 99.2%</span>
+          </div>
+        </FloatingCard>
+        <FloatingCard className="absolute top-[38%] right-8 xl:right-16" style={{ animationDelay: "2s" }}>
+          <div className="flex items-center gap-2.5 text-xs">
+            <Building2 size={15} className="text-accent" />
+            <span className="text-muted-foreground font-medium">Company enriched</span>
+          </div>
+        </FloatingCard>
+        <FloatingCard className="absolute bottom-[26%] left-16 xl:left-28" style={{ animationDelay: "4s" }}>
+          <div className="flex items-center gap-2.5 text-xs">
+            <Users size={15} className="text-primary" />
+            <span className="text-muted-foreground font-medium">+2,450 leads found</span>
+          </div>
+        </FloatingCard>
       </div>
     </div>
   </section>
