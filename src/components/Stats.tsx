@@ -39,25 +39,45 @@ const AnimatedNumber = ({ target, suffix }: { target: number; suffix: string }) 
   }, [target]);
 
   return (
-    <div ref={ref} className="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-display gradient-text leading-none">
+    <div ref={ref} className="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-display leading-none" style={{
+      background: "linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)))",
+      WebkitBackgroundClip: "text",
+      WebkitTextFillColor: "transparent",
+    }}>
       {count}{suffix}
     </div>
   );
 };
 
 const Stats = () => (
-  <section className="py-24 lg:py-32">
-    <div className="container mx-auto px-4">
-      <div className="bg-card rounded-3xl border border-border/50 p-10 sm:p-14 lg:p-20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-grid opacity-[0.03]" />
-        <div className="relative grid grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-6">
-          {stats.map(({ value, suffix, label }) => (
-            <div key={label} className="text-center">
-              <AnimatedNumber target={value} suffix={suffix} />
-              <p className="text-sm text-muted-foreground mt-3 font-medium">{label}</p>
+  <section className="py-24 lg:py-32 relative overflow-hidden">
+    {/* Dark gradient background like Stripe */}
+    <div className="absolute inset-0 gradient-primary opacity-95" />
+    <div className="absolute inset-0 bg-grid opacity-[0.05]" />
+
+    <div className="container mx-auto px-4 relative z-10">
+      {/* Heading */}
+      <div className="text-center mb-16">
+        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-display tracking-tight text-primary-foreground/90 leading-tight">
+          The backbone of
+          <br />
+          B2B data intelligence
+        </h2>
+      </div>
+
+      {/* Divider */}
+      <div className="border-t border-primary-foreground/10 mb-12" />
+
+      {/* Stats grid */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-6">
+        {stats.map(({ value, suffix, label }) => (
+          <div key={label} className="text-center">
+            <div className="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-display leading-none text-primary-foreground/90">
+              {value}{suffix}
             </div>
-          ))}
-        </div>
+            <p className="text-sm text-primary-foreground/50 mt-3 font-medium">{label}</p>
+          </div>
+        ))}
       </div>
     </div>
   </section>
