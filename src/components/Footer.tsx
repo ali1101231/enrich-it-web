@@ -16,9 +16,8 @@ const Footer = () => {
       if (!watermarkRef.current) return;
       const rect = watermarkRef.current.getBoundingClientRect();
       const windowH = window.innerHeight;
-      // When element enters viewport from bottom, animate from 100 -> 0
-      const progress = Math.max(0, Math.min(1, (windowH - rect.top) / (windowH * 0.6)));
-      setOffset(100 * (1 - progress));
+      const progress = Math.max(0, Math.min(1, (windowH - rect.top) / (windowH * 0.5)));
+      setOffset(80 * (1 - progress));
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
@@ -51,7 +50,7 @@ const Footer = () => {
         </div>
 
         {/* Social boxes */}
-        <div className="grid grid-cols-2 border border-background/[0.08] rounded-2xl overflow-hidden mb-20">
+        <div className="grid grid-cols-2 border border-background/[0.08] rounded-2xl overflow-hidden mb-16">
           <a href="#" className="flex items-center gap-3 px-7 py-6 border-r border-background/[0.08] transition-all duration-300 hover:bg-primary group">
             <Youtube size={20} className="text-background/30 group-hover:text-primary-foreground transition-colors" />
             <span className="text-sm font-medium text-background/40 group-hover:text-primary-foreground transition-colors">Youtube</span>
@@ -64,10 +63,13 @@ const Footer = () => {
       </div>
 
       {/* Animated watermark */}
-      <div ref={watermarkRef} className="relative h-28 md:h-48 overflow-hidden select-none pointer-events-none">
+      <div ref={watermarkRef} className="relative h-36 md:h-52 select-none pointer-events-none flex items-end justify-center overflow-visible">
         <span
-          className="absolute left-1/2 -translate-x-1/2 text-[9rem] md:text-[15rem] font-black font-display text-background/[0.03] leading-none whitespace-nowrap tracking-tight transition-transform duration-100 ease-out"
-          style={{ transform: `translateX(-50%) translateY(${offset}%)` }}
+          className="text-[10rem] md:text-[16rem] font-black font-display leading-none whitespace-nowrap tracking-tight transition-transform duration-75 ease-out"
+          style={{
+            color: "rgba(255,255,255,0.04)",
+            transform: `translateY(${offset}%)`,
+          }}
         >
           Koldify
         </span>
