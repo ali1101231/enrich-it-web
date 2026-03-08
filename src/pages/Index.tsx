@@ -4,7 +4,6 @@ import LogoMarquee from "@/components/LogoMarquee";
 import Features from "@/components/Features";
 import HowItWorks from "@/components/HowItWorks";
 import Stats from "@/components/Stats";
-import Integrations from "@/components/Integrations";
 import Testimonials from "@/components/Testimonials";
 import Pricing from "@/components/Pricing";
 import FAQ from "@/components/FAQ";
@@ -19,7 +18,6 @@ const Index = () => (
     <Features />
     <HowItWorks />
     <Stats />
-    <Integrations />
     <Testimonials />
     <Pricing />
     <FAQ />
