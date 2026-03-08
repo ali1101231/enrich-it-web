@@ -11,7 +11,7 @@ import CTA from "@/components/CTA";
 import Footer from "@/components/Footer";
 
 const Index = () => (
-  <div className="min-h-screen bg-background">
+  <div className="min-h-screen page-gradient">
     <Navbar />
     <Hero />
     <LogoSlider />
