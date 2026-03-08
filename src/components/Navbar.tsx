@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Moon, Sun, ChevronRight } from "lucide-react";
 import { useTheme } from "@/hooks/use-theme";
+import { GlowButton } from "@/components/ui/glow-button";
 
 const navLinks = [
   { label: "Pricing", href: "#pricing" },
