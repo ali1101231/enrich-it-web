@@ -1,8 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Play, ArrowRight, Mail, Building2, Users } from "lucide-react";
 
-const FloatingCard = ({ children, className }: { children: React.ReactNode; className?: string }) => (
-  <div className={`glass rounded-xl p-3 shadow-xl animate-float ${className}`}>
+const FloatingCard = ({ children, className, style }: { children: React.ReactNode; className?: string; style?: React.CSSProperties }) => (
+  <div className={`glass rounded-xl p-3 shadow-xl animate-float ${className}`} style={style}>
     {children}
   </div>
 );
