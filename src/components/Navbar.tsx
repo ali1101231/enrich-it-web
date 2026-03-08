@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Moon, Sun } from "lucide-react";
+import { useTheme } from "@/hooks/use-theme";
 
 const navLinks = ["Product", "Solutions", "Pricing", "Docs", "Blog"];
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { theme, toggle } = useTheme();
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 glass-strong">
@@ -21,12 +23,20 @@ const Navbar = () => {
           </div>
         </div>
         <div className="hidden md:flex items-center gap-3">
+          <Button variant="ghost" size="icon" onClick={toggle} className="rounded-full">
+            {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
+          </Button>
           <Button variant="ghost" size="sm">Sign In</Button>
           <Button variant="hero" size="sm">Get Started</Button>
         </div>
-        <button className="md:hidden text-foreground" onClick={() => setMobileOpen(!mobileOpen)}>
-          {mobileOpen ? <X size={20} /> : <Menu size={20} />}
-        </button>
+        <div className="flex md:hidden items-center gap-2">
+          <Button variant="ghost" size="icon" onClick={toggle} className="rounded-full">
+            {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
+          </Button>
+          <button className="text-foreground" onClick={() => setMobileOpen(!mobileOpen)}>
+            {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </div>
       </div>
       {mobileOpen && (
         <div className="md:hidden glass-strong border-t border-border/30 px-4 pb-4 pt-2 space-y-3">
