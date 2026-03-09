@@ -7,9 +7,8 @@ import { Eye, EyeOff } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { motion } from "framer-motion";
 
-const cubicBezier = [0.68, -0.55, 0.265, 1.55] as const;
-type CB = readonly [number, number, number, number];
-const ease = cubicBezier as unknown as CB;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const cubicBezier: any = [0.68, -0.55, 0.265, 1.55];
 
 const Auth = () => {
   const location = useLocation();
