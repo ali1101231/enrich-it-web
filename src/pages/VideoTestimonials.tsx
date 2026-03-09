@@ -52,7 +52,7 @@ const VideoTestimonials = () => {
               Hear from our <span className="gradient-text">customers</span>
             </h1>
             <p className="text-lg text-muted-foreground">
-              Real stories from real teams using Koldify to transform their growth.
+              Real stories from real teams using Enrich to transform their growth.
             </p>
           </div>
 
