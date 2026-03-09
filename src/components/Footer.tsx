@@ -71,7 +71,7 @@ const Footer = () => {
             transform: `translateY(${offset}%)`,
           }}
         >
-          Enrich
+          Enrich it
         </span>
       </div>
     </footer>

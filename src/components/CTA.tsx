@@ -14,7 +14,7 @@ const CTA = () => (
             Lead Lists Today
           </h2>
           <p className="text-primary-foreground/60 max-w-md mx-auto mb-10 text-lg">
-            Join thousands of sales teams using Enrich to close more deals.
+            Join thousands of sales teams using Enrich it to close more deals.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <Button variant="hero-outline" size="lg" className="border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/10 gap-2 h-12 rounded-xl px-8 text-base">

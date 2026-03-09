@@ -4,13 +4,13 @@ import { Plus, Minus, ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const faqData = [
-  { question: "What exactly is Enrich?", answer: "Enrich is a collection of high-performance B2B data APIs designed specifically for Growth, Revenue, and Operations teams. From ICP targeting and contact enrichment to email validation, our APIs provide real-time, verified data at the lowest possible cost." },
+  { question: "What exactly is Enrich it?", answer: "Enrich it is a collection of high-performance B2B data APIs designed specifically for Growth, Revenue, and Operations teams. From ICP targeting and contact enrichment to email validation, our APIs provide real-time, verified data at the lowest possible cost." },
   { question: 'What does "at scraping cost" mean?', answer: "It means you get premium-quality enriched data at a fraction of what traditional providers charge — comparable to raw scraping costs but with verified, structured, and ready-to-use results." },
   { question: "Do I need a developer or technical background?", answer: "Not at all. While our APIs are developer-friendly, we also offer no-code integrations and a simple dashboard that anyone on your team can use." },
-  { question: "What use cases can Enrich handle for Growth teams?", answer: "Lead enrichment, email verification, company firmographics, ICP scoring, CRM data hygiene, and outbound list building — all in real-time via API or bulk upload." },
+  { question: "What use cases can Enrich it handle for Growth teams?", answer: "Lead enrichment, email verification, company firmographics, ICP scoring, CRM data hygiene, and outbound list building — all in real-time via API or bulk upload." },
   { question: "How quickly can I get started?", answer: "You can sign up and start making API calls in under 5 minutes. We provide SDKs, Postman collections, and detailed documentation to get you up and running fast." },
-  { question: "What integrations work with Enrich?", answer: "Enrich integrates seamlessly with Salesforce, HubSpot, Outreach, Apollo, Clay, Make, Zapier, and any tool that supports webhooks or REST APIs." },
-  { question: "Is Enrich GDPR compliant?", answer: "Yes. We are fully GDPR compliant and take data privacy seriously. All data processing follows strict European data protection standards." },
+  { question: "What integrations work with Enrich it?", answer: "Enrich it integrates seamlessly with Salesforce, HubSpot, Outreach, Apollo, Clay, Make, Zapier, and any tool that supports webhooks or REST APIs." },
+  { question: "Is Enrich it GDPR compliant?", answer: "Yes. We are fully GDPR compliant and take data privacy seriously. All data processing follows strict European data protection standards." },
   { question: "Can I request a specific feature?", answer: "Absolutely! We love hearing from our users. Reach out via our contact page or in-app chat and we'll prioritize based on demand." },
 ];
 
