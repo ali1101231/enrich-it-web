@@ -181,7 +181,7 @@ const Pricing = () => {
 
                   <div className="mb-7">
                     {plan.popular ? (
-                      <button className="w-full flex items-center justify-center gap-1.5 rounded-xl h-11 font-medium text-sm bg-background text-foreground hover:bg-background/90 transition-colors">
+                      <button className="w-full flex items-center justify-center gap-1.5 rounded-xl h-11 font-medium text-sm bg-primary-foreground text-primary hover:bg-primary-foreground/90 transition-colors">
                         Get started
                         <ArrowUpRight size={16} />
                       </button>
