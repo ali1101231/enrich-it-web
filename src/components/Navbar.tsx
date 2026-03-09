@@ -53,7 +53,7 @@ const Navbar = () => {
       >
         <div className="flex items-center justify-between h-14 px-5">
           <div className="flex items-center gap-10">
-            <a href="/" className="text-lg font-bold font-display gradient-text tracking-tight">Koldify</a>
+            <a href="/" className="text-lg font-bold font-display gradient-text tracking-tight">Enrich</a>
             <div className="hidden md:flex items-center gap-1">
               {navLinks.map(({ label, href }) => (
                 <a

@@ -71,7 +71,7 @@ const Footer = () => {
             transform: `translateY(${offset}%)`,
           }}
         >
-          Koldify
+          Enrich
         </span>
       </div>
     </footer>
