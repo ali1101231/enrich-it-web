@@ -144,7 +144,7 @@ const Pricing = () => {
                   className={cn(
                     "rounded-2xl p-7 lg:p-8 flex flex-col h-full transition-all duration-300",
                     plan.popular
-                      ? "bg-foreground text-background shadow-2xl shadow-foreground/15 scale-[1.03] ring-1 ring-foreground/10"
+                      ? "gradient-primary text-primary-foreground shadow-2xl shadow-primary/25 scale-[1.03] ring-1 ring-primary/30"
                       : "bg-card border border-border/50 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/[0.04]"
                   )}
                 >
