@@ -29,11 +29,11 @@ const Footer = () => {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-10 mb-14">
           <div className="col-span-2 md:col-span-1">
-            <span className="text-xl font-bold font-display gradient-text">Enrich</span>
+            <span className="text-xl font-bold font-display gradient-text">Enrich it</span>
             <p className="text-sm text-background/50 mt-3 leading-relaxed max-w-[220px]">
               The data engine behind high-performing GTM teams
             </p>
-            <p className="text-xs text-background/30 mt-8">© 2026 Enrich. All rights reserved.</p>
+            <p className="text-xs text-background/30 mt-8">© 2026 Enrich it. All rights reserved.</p>
           </div>
           {Object.entries(links).map(([title, items]) => (
             <div key={title}>
@@ -71,7 +71,7 @@ const Footer = () => {
             transform: `translateY(${offset}%)`,
           }}
         >
-          Enrich
+          Enrich it
         </span>
       </div>
     </footer>
