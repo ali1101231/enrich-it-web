@@ -154,10 +154,10 @@ const Pricing = () => {
                     </span>
                   )}
 
-                  <h3 className={cn("text-xl font-bold font-display", plan.popular ? "text-background" : "text-foreground")}>
+                  <h3 className={cn("text-xl font-bold font-display", plan.popular ? "text-primary-foreground" : "text-foreground")}>
                     {plan.name}
                   </h3>
-                  <p className={cn("text-sm mt-1 mb-5", plan.popular ? "text-background/70" : "text-muted-foreground")}>
+                  <p className={cn("text-sm mt-1 mb-5", plan.popular ? "text-primary-foreground/70" : "text-muted-foreground")}>
                     {plan.description}
                   </p>
 
