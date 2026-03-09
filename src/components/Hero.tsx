@@ -18,7 +18,7 @@ const Hero = () => {
   const [showVideo, setShowVideo] = useState(false);
 
   return (
-    <section className="relative min-h-[92vh] flex flex-col items-center justify-center overflow-hidden pt-16">
+    <section className="relative min-h-[92vh] flex flex-col items-center justify-center overflow-hidden pt-28">
       <div className="absolute inset-0 bg-grid opacity-20" />
       <div className="absolute inset-0 hero-glow" />
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-primary/[0.06] blur-[120px]" />

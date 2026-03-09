@@ -198,9 +198,9 @@ const Pricing = () => {
                     </p>
                     <ul className="space-y-3">
                       {plan.features.map((feature) => (
-                        <li key={feature} className={cn("flex items-center gap-2.5 text-sm", plan.popular ? "text-background/80" : "text-muted-foreground")}>
-                          <div className={cn("w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0", plan.popular ? "bg-background/15" : "bg-accent/15")}>
-                            <Check size={12} className={plan.popular ? "text-background" : "text-accent"} />
+                            <li key={feature} className={cn("flex items-center gap-2.5 text-sm", plan.popular ? "text-primary-foreground/80" : "text-muted-foreground")}>
+                          <div className={cn("w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0", plan.popular ? "bg-primary-foreground/15" : "bg-accent/15")}>
+                            <Check size={12} className={plan.popular ? "text-primary-foreground" : "text-accent"} />
                           </div>
                           {feature}
                         </li>
