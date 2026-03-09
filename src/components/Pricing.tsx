@@ -193,7 +193,7 @@ const Pricing = () => {
                   </div>
 
                   <div className="flex-1">
-                    <p className={cn("text-xs font-semibold uppercase tracking-wider mb-4", plan.popular ? "text-background/50" : "text-muted-foreground")}>
+                    <p className={cn("text-xs font-semibold uppercase tracking-wider mb-4", plan.popular ? "text-primary-foreground/50" : "text-muted-foreground")}>
                       What's included
                     </p>
                     <ul className="space-y-3">
