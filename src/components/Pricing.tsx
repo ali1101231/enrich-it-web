@@ -174,7 +174,7 @@ const Pricing = () => {
                         ${price}
                       </motion.span>
                     </AnimatePresence>
-                    <span className={cn("text-base font-normal ml-1", plan.popular ? "text-background/50" : "text-muted-foreground")}>
+                    <span className={cn("text-base font-normal ml-1", plan.popular ? "text-primary-foreground/50" : "text-muted-foreground")}>
                       /mo
                     </span>
                   </div>
