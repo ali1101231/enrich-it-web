@@ -149,7 +149,7 @@ const Pricing = () => {
                   )}
                 >
                   {plan.popular && (
-                    <span className="inline-flex self-start text-[10px] font-bold uppercase tracking-widest mb-4 px-3 py-1 rounded-full bg-background/15 text-background">
+                    <span className="inline-flex self-start text-[10px] font-bold uppercase tracking-widest mb-4 px-3 py-1 rounded-full bg-primary-foreground/15 text-primary-foreground">
                       Most Popular
                     </span>
                   )}
