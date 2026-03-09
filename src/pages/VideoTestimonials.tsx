@@ -52,7 +52,7 @@ const VideoTestimonials = () => {
               Hear from our <span className="gradient-text">customers</span>
             </h1>
             <p className="text-lg text-muted-foreground">
-              Real stories from real teams using Enrich to transform their growth.
+              Real stories from real teams using Enrichto transform their growth.
             </p>
           </div>
 
@@ -90,7 +90,7 @@ const VideoTestimonials = () => {
             <div className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 backdrop-blur-sm p-4" onClick={() => setShowForm(false)}>
               <div className="glass-strong rounded-2xl p-8 max-w-lg w-full shadow-2xl" onClick={(e) => e.stopPropagation()}>
                 <h3 className="text-xl font-bold mb-1">Submit your testimonial</h3>
-                <p className="text-sm text-muted-foreground mb-6">Share your experience with Koldify</p>
+                <p className="text-sm text-muted-foreground mb-6">Share your experience with KEnrich/p>
                 <div className="space-y-4">
                   <Input placeholder="Your name" className="bg-background/50" />
                   <Input placeholder="Role & Company" className="bg-background/50" />
