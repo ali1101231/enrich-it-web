@@ -30,12 +30,9 @@ const VideoTestimonials = () => {
               <ArrowLeft size={16} />
               <span className="text-sm">Back</span>
             </Link>
-            <span className="text-xl font-bold gradient-text">Koldify</span>
+            <span className="text-xl font-bold gradient-text">Enrich</span>
           </div>
           <div className="flex items-center gap-3">
-            <Button variant="ghost" size="icon" onClick={toggle} className="rounded-full">
-              {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
-            </Button>
             <Button variant="hero" size="sm" onClick={() => setShowForm(true)}>
               <Upload size={14} className="mr-2" /> Submit Your Story
             </Button>
