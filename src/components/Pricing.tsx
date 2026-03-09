@@ -144,24 +144,24 @@ const Pricing = () => {
                   className={cn(
                     "rounded-2xl p-7 lg:p-8 flex flex-col h-full transition-all duration-300",
                     plan.popular
-                      ? "bg-foreground text-background shadow-2xl shadow-foreground/15 scale-[1.03] ring-1 ring-foreground/10"
+                      ? "gradient-primary text-primary-foreground shadow-2xl shadow-primary/25 scale-[1.03] ring-1 ring-primary/30"
                       : "bg-card border border-border/50 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/[0.04]"
                   )}
                 >
                   {plan.popular && (
-                    <span className="inline-flex self-start text-[10px] font-bold uppercase tracking-widest mb-4 px-3 py-1 rounded-full bg-background/15 text-background">
+                    <span className="inline-flex self-start text-[10px] font-bold uppercase tracking-widest mb-4 px-3 py-1 rounded-full bg-primary-foreground/15 text-primary-foreground">
                       Most Popular
                     </span>
                   )}
 
-                  <h3 className={cn("text-xl font-bold font-display", plan.popular ? "text-background" : "text-foreground")}>
+                  <h3 className={cn("text-xl font-bold font-display", plan.popular ? "text-primary-foreground" : "text-foreground")}>
                     {plan.name}
                   </h3>
-                  <p className={cn("text-sm mt-1 mb-5", plan.popular ? "text-background/70" : "text-muted-foreground")}>
+                  <p className={cn("text-sm mt-1 mb-5", plan.popular ? "text-primary-foreground/70" : "text-muted-foreground")}>
                     {plan.description}
                   </p>
 
-                  <div className={cn("mb-6", plan.popular ? "text-background" : "text-foreground")}>
+                  <div className={cn("mb-6", plan.popular ? "text-primary-foreground" : "text-foreground")}>
                     <AnimatePresence mode="wait">
                       <motion.span
                         key={price}
@@ -174,14 +174,14 @@ const Pricing = () => {
                         ${price}
                       </motion.span>
                     </AnimatePresence>
-                    <span className={cn("text-base font-normal ml-1", plan.popular ? "text-background/50" : "text-muted-foreground")}>
+                    <span className={cn("text-base font-normal ml-1", plan.popular ? "text-primary-foreground/50" : "text-muted-foreground")}>
                       /mo
                     </span>
                   </div>
 
                   <div className="mb-7">
                     {plan.popular ? (
-                      <button className="w-full flex items-center justify-center gap-1.5 rounded-xl h-11 font-medium text-sm bg-background text-foreground hover:bg-background/90 transition-colors">
+                      <button className="w-full flex items-center justify-center gap-1.5 rounded-xl h-11 font-medium text-sm bg-primary-foreground text-primary hover:bg-primary-foreground/90 transition-colors">
                         Get started
                         <ArrowUpRight size={16} />
                       </button>
@@ -193,14 +193,14 @@ const Pricing = () => {
                   </div>
 
                   <div className="flex-1">
-                    <p className={cn("text-xs font-semibold uppercase tracking-wider mb-4", plan.popular ? "text-background/50" : "text-muted-foreground")}>
+                    <p className={cn("text-xs font-semibold uppercase tracking-wider mb-4", plan.popular ? "text-primary-foreground/50" : "text-muted-foreground")}>
                       What's included
                     </p>
                     <ul className="space-y-3">
                       {plan.features.map((feature) => (
-                        <li key={feature} className={cn("flex items-center gap-2.5 text-sm", plan.popular ? "text-background/80" : "text-muted-foreground")}>
-                          <div className={cn("w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0", plan.popular ? "bg-background/15" : "bg-accent/15")}>
-                            <Check size={12} className={plan.popular ? "text-background" : "text-accent"} />
+                            <li key={feature} className={cn("flex items-center gap-2.5 text-sm", plan.popular ? "text-primary-foreground/80" : "text-muted-foreground")}>
+                          <div className={cn("w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0", plan.popular ? "bg-primary-foreground/15" : "bg-accent/15")}>
+                            <Check size={12} className={plan.popular ? "text-primary-foreground" : "text-accent"} />
                           </div>
                           {feature}
                         </li>
