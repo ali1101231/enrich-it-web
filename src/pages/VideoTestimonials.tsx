@@ -52,7 +52,7 @@ const VideoTestimonials = () => {
               Hear from our <span className="gradient-text">customers</span>
             </h1>
             <p className="text-lg text-muted-foreground">
-              Real stories from real teams using Enricho transform their growth.
+              Real stories from real teams using Enrich it to transform their growth.
             </p>
           </div>
 
