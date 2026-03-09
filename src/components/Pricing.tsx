@@ -161,7 +161,7 @@ const Pricing = () => {
                     {plan.description}
                   </p>
 
-                  <div className={cn("mb-6", plan.popular ? "text-background" : "text-foreground")}>
+                  <div className={cn("mb-6", plan.popular ? "text-primary-foreground" : "text-foreground")}>
                     <AnimatePresence mode="wait">
                       <motion.span
                         key={price}
