@@ -47,7 +47,7 @@ const Navbar = () => {
   return (
     <div className="fixed top-0 left-0 right-0 z-50 flex justify-center px-4 pt-3">
       <nav
-        className={`w-full max-w-5xl bg-background/80 backdrop-blur-2xl border border-border/60 rounded-2xl transition-shadow duration-300 ${
+        className={`w-full max-w-5xl bg-background backdrop-blur-2xl border border-border/60 rounded-2xl transition-shadow duration-300 ${
           scrolled ? "shadow-lg shadow-foreground/[0.04]" : ""
         }`}
       >
