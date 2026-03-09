@@ -90,7 +90,7 @@ const VideoTestimonials = () => {
             <div className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 backdrop-blur-sm p-4" onClick={() => setShowForm(false)}>
               <div className="glass-strong rounded-2xl p-8 max-w-lg w-full shadow-2xl" onClick={(e) => e.stopPropagation()}>
                 <h3 className="text-xl font-bold mb-1">Submit your testimonial</h3>
-                <p className="text-sm text-muted-foreground mb-6">Share your experience with Enrich</p>
+                <p className="text-sm text-muted-foreground mb-6">Share your experience with Enrich it</p>
                 <div className="space-y-4">
                   <Input placeholder="Your name" className="bg-background/50" />
                   <Input placeholder="Role & Company" className="bg-background/50" />
