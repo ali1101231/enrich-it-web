@@ -73,12 +73,14 @@ const Navbar = () => {
             </div>
           </div>
           <div className="hidden md:flex items-center gap-3">
-            <div className="h-8 flex items-center">
+            <Link to="/sign-in">
               <GlowButton>Login</GlowButton>
-            </div>
-            <Button className="bg-foreground text-background hover:bg-foreground/90 rounded-full px-4 h-8 text-xs font-medium gap-1">
-              Get 1,000 credits free <ChevronRight size={13} />
-            </Button>
+            </Link>
+            <Link to="/sign-up">
+              <Button className="bg-foreground text-background hover:bg-foreground/90 rounded-full px-4 h-8 text-xs font-medium gap-1">
+                Get 1,000 credits free <ChevronRight size={13} />
+              </Button>
+            </Link>
           </div>
           <div className="flex md:hidden items-center gap-2">
             <button className="text-foreground p-1" onClick={() => setMobileOpen(!mobileOpen)}>
