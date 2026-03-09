@@ -44,7 +44,7 @@ const steps = [
     number: "03",
     icon: Download,
     title: "Export or Sync",
-    description: "Push enriched data directly to your CRM, export as CSV, or integrate via our lightning-fast API.",
+    description: "Push enriched data directly to your CRM, export as CSV, or sync with your favorite tools in one click.",
   },
 ];
 
