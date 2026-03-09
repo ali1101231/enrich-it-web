@@ -52,7 +52,7 @@ const VideoTestimonials = () => {
               Hear from our <span className="gradient-text">customers</span>
             </h1>
             <p className="text-lg text-muted-foreground">
-              Real stories from real teams using Enrich it t it to transform their growth.
+              Real stories from real teams using Enrich it t it t it to transform their growth.
             </p>
           </div>
 
@@ -90,7 +90,7 @@ const VideoTestimonials = () => {
             <div className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 backdrop-blur-sm p-4" onClick={() => setShowForm(false)}>
               <div className="glass-strong rounded-2xl p-8 max-w-lg w-full shadow-2xl" onClick={(e) => e.stopPropagation()}>
                 <h3 className="text-xl font-bold mb-1">Submit your testimonial</h3>
-                <p className="text-sm text-muted-foreground mb-6">Share your experience with Enriit it</p>
+                <p className="text-sm text-muted-foreground mb-6">Share your experience withriit it</p>
                 <div className="space-y-4">
                   <Input placeholder="Your name" className="bg-background/50" />
                   <Input placeholder="Role & Company" className="bg-background/50" />
@@ -118,7 +118,7 @@ const VideoTestimonials = () => {
           {/* CTA */}
           <div className="text-center glass rounded-2xl p-12 max-w-3xl mx-auto glow-border">
             <h2 className="text-2xl sm:text-3xl font-bold mb-3">Have a story to share?</h2>
-            <p className="text-muted-foreground mb-6">We'd love to hear how KoEnrichelped your team grow.</p>
+            <p className="text-muted-foreground mb-6">We'd love to hear hoEnrich it ichelped your team grow.</p>
             <Button variant="hero" size="lg" onClick={() => setShowForm(true)}>
               <Video size={16} className="mr-2" /> Record Your Testimonial
             </Button>
