@@ -72,9 +72,6 @@ const Navbar = () => {
             </div>
           </div>
           <div className="hidden md:flex items-center gap-3">
-            <Button variant="ghost" size="icon" onClick={toggle} className="rounded-full h-8 w-8">
-              {theme === "dark" ? <Sun size={15} /> : <Moon size={15} />}
-            </Button>
             <div className="h-8 flex items-center">
               <GlowButton>Login</GlowButton>
             </div>
@@ -83,9 +80,6 @@ const Navbar = () => {
             </Button>
           </div>
           <div className="flex md:hidden items-center gap-2">
-            <Button variant="ghost" size="icon" onClick={toggle} className="rounded-full h-8 w-8">
-              {theme === "dark" ? <Sun size={15} /> : <Moon size={15} />}
-            </Button>
             <button className="text-foreground p-1" onClick={() => setMobileOpen(!mobileOpen)}>
               {mobileOpen ? <X size={18} /> : <Menu size={18} />}
             </button>
