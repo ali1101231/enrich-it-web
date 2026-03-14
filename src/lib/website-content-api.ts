@@ -32,10 +32,41 @@ export interface WebsiteFaq {
   order?: number;
 }
 
+export interface WebsitePricingFeature {
+  id: string;
+  text: string;
+  isIncluded: boolean;
+  sortOrder: number;
+}
+
+export interface WebsitePricingPlan {
+  id: string;
+  name: string;
+  subtitle: string;
+  price: string;
+  billingPeriod: string;
+  description: string;
+  ctaText: string;
+  ctaHref: string;
+  isPopular: boolean;
+  isActive: boolean;
+  sortOrder: number;
+  features: WebsitePricingFeature[];
+}
+
 export interface WebsiteContentResponse {
   logos: WebsiteLogo[];
   testimonials: WebsiteTestimonial[];
   faqs: WebsiteFaq[];
+}
+
+export interface ContactSubmissionRequest {
+  fullName: string;
+  email: string;
+  company: string;
+  phone: string;
+  subject: string;
+  message: string;
 }
 
 async function apiFetch<T>(path: string): Promise<T[]> {
@@ -69,6 +100,49 @@ async function apiFetch<T>(path: string): Promise<T[]> {
   }
 }
 
+async function apiPost<TResponse>(path: string, body: unknown): Promise<TResponse | null> {
+  const url = `${getBaseUrl()}${path}`;
+
+  let response: Response;
+  try {
+    response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    });
+  } catch (error) {
+    throw new Error(
+      `Network error while requesting ${url}: ${error instanceof Error ? error.message : "Unknown error"}`,
+    );
+  }
+
+  if (!response.ok) {
+    let responseBody = "";
+    try {
+      responseBody = await response.text();
+    } catch {
+      responseBody = "";
+    }
+
+    throw new Error(
+      `API request failed for ${url}: ${response.status} ${response.statusText}${responseBody ? ` - ${responseBody}` : ""}`,
+    );
+  }
+
+  if (response.status === 204) {
+    return null;
+  }
+
+  const contentType = response.headers.get("content-type") ?? "";
+  if (contentType.includes("application/json")) {
+    return (await response.json()) as TResponse;
+  }
+
+  return null;
+}
+
 export const websiteContentApi = {
   getLogos(): Promise<WebsiteLogo[]> {
     return apiFetch<WebsiteLogo>("/api/website-content/logos");
@@ -82,7 +156,15 @@ export const websiteContentApi = {
     return apiFetch<WebsiteFaq>("/api/website-content/faqs");
   },
 
+  getPricing(): Promise<WebsitePricingPlan[]> {
+    return apiFetch<WebsitePricingPlan>("/api/website-content/pricing");
+  },
+
   getAll(): Promise<WebsiteContentResponse> {
     return apiFetch<never>("/api/website-content") as unknown as Promise<WebsiteContentResponse>;
+  },
+
+  submitContactForm(payload: ContactSubmissionRequest): Promise<void> {
+    return apiPost<void>("/api/contact-submissions", payload).then(() => undefined);
   },
 };
