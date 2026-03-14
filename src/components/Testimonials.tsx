@@ -34,12 +34,12 @@ function getInitials(name: string): string {
 }
 
 const FALLBACK: Testimonial[] = [
-  { id: '1', quote: 'Enrich it cut our prospecting time in half. The data quality is unmatched — we\'ve never had bounce rates this low.', clientName: 'Sarah Chen', clientRole: 'Head of Growth', companyName: 'Vercel', rating: 5 },
-  { id: '2', quote: 'We tried every enrichment tool on the market. Enrich it is the only one that consistently delivers accurate, fresh data at scale.', clientName: 'Marcus Webb', clientRole: 'VP of Sales', companyName: 'Stripe', rating: 5 },
-  { id: '3', quote: 'The HubSpot integration is seamless. Our SDRs now spend 80% of their time selling instead of researching.', clientName: 'Priya Nair', clientRole: 'Sales Ops Manager', companyName: 'Notion', rating: 5 },
-  { id: '4', quote: 'ROI was positive within the first week. The email verification alone saved us thousands in bounce penalties.', clientName: 'James Kowalski', clientRole: 'Founder', companyName: 'Loom', rating: 5 },
-  { id: '5', quote: 'Finally a B2B data tool built for speed. API response times are incredible and the coverage is global.', clientName: 'Aisha Mbeki', clientRole: 'CTO', companyName: 'Linear', rating: 5 },
-  { id: '6', quote: 'Our outbound conversion rate went up 3x after switching. The intent signals feature is a game changer.', clientName: 'Tom Lindqvist', clientRole: 'Director of Demand Gen', companyName: 'Figma', rating: 5 },
+  { id: '1', quote: 'Enrich it cut our list-building time in half. Email and phone enrichment is now part of every campaign we run.', clientName: 'Sarah Chen', clientRole: 'Head of Growth', companyName: 'Vercel', rating: 5 },
+  { id: '2', quote: 'The domain to LinkedIn URL mapping is incredibly useful. Our team can identify the right companies much faster.', clientName: 'Marcus Webb', clientRole: 'VP of Sales', companyName: 'Stripe', rating: 5 },
+  { id: '3', quote: 'We use company LinkedIn URLs as input and get enriched company profiles back in minutes. It\'s a huge workflow win.', clientName: 'Priya Nair', clientRole: 'Sales Ops Manager', companyName: 'Notion', rating: 5 },
+  { id: '4', quote: 'Setup was simple and the enrichment output is consistent across email, phone, and company data.', clientName: 'James Kowalski', clientRole: 'Founder', companyName: 'Loom', rating: 5 },
+  { id: '5', quote: 'The API is fast and predictable. We can enrich records at scale without changing our pipeline.', clientName: 'Aisha Mbeki', clientRole: 'CTO', companyName: 'Linear', rating: 5 },
+  { id: '6', quote: 'Our SDR team now starts with enriched profiles instead of raw lists. Productivity improved right away.', clientName: 'Tom Lindqvist', clientRole: 'Director of Demand Gen', companyName: 'Figma', rating: 5 },
 ];
 
 const Testimonials = ({ className }: { className?: string }) => {
@@ -65,7 +65,7 @@ const Testimonials = ({ className }: { className?: string }) => {
   );
 
   return (
-    <section className={cn("py-24 lg:py-32 overflow-hidden", className)}>
+    <section id="reviews" className={cn("py-24 lg:py-32 overflow-hidden", className)}>
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
