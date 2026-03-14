@@ -3,15 +3,37 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, Minus, ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
-const faqData = [
-  { question: "What exactly is Enrich it?", answer: "Enrich it is a collection of high-performance B2B data APIs designed specifically for Growth, Revenue, and Operations teams. From ICP targeting and contact enrichment to email validation, our APIs provide real-time, verified data at the lowest possible cost." },
-  { question: 'What does "at scraping cost" mean?', answer: "It means you get premium-quality enriched data at a fraction of what traditional providers charge — comparable to raw scraping costs but with verified, structured, and ready-to-use results." },
-  { question: "Do I need a developer or technical background?", answer: "Not at all. While our APIs are developer-friendly, we also offer no-code integrations and a simple dashboard that anyone on your team can use." },
-  { question: "What use cases can Enrich it handle for Growth teams?", answer: "Lead enrichment, email verification, company firmographics, ICP scoring, CRM data hygiene, and outbound list building — all in real-time via API or bulk upload." },
-  { question: "How quickly can I get started?", answer: "You can sign up and start making API calls in under 5 minutes. We provide SDKs, Postman collections, and detailed documentation to get you up and running fast." },
-  { question: "What integrations work with Enrich it?", answer: "Enrich it integrates seamlessly with Salesforce, HubSpot, Outreach, Apollo, Clay, Make, Zapier, and any tool that supports webhooks or REST APIs." },
-  { question: "Is Enrich it GDPR compliant?", answer: "Yes. We are fully GDPR compliant and take data privacy seriously. All data processing follows strict European data protection standards." },
-  { question: "Can I request a specific feature?", answer: "Absolutely! We love hearing from our users. Reach out via our contact page or in-app chat and we'll prioritize based on demand." },
+const FAQS = [
+  {
+    id: '1',
+    question: 'What is Enrich it and how does it work?',
+    answer: 'Enrich it is a B2B data enrichment platform that helps you find, verify, and enrich contact and company data in real-time. Simply upload a list or search our database to get enriched profiles instantly.',
+  },
+  {
+    id: '2',
+    question: 'How accurate is the data?',
+    answer: 'We guarantee 99%+ email deliverability on all verified contacts. Our data is refreshed continuously using AI-powered signals from across the web, ensuring you always have the most up-to-date information.',
+  },
+  {
+    id: '3',
+    question: 'What integrations do you support?',
+    answer: 'Enrich it integrates natively with Salesforce, HubSpot, Pipedrive, Outreach, and hundreds more via our Zapier and native API. Setup takes less than 5 minutes.',
+  },
+  {
+    id: '4',
+    question: 'Is my data secure?',
+    answer: 'Yes. We are SOC 2 Type II certified and fully GDPR compliant. All data is encrypted at rest and in transit. We never sell your data to third parties.',
+  },
+  {
+    id: '5',
+    question: 'Can I try Enrich it before paying?',
+    answer: 'Absolutely. Our free plan includes 50 credits per month with no credit card required. Upgrade anytime as your team grows.',
+  },
+  {
+    id: '6',
+    question: 'What happens if I run out of credits?',
+    answer: 'You can purchase additional credits at any time, or upgrade to a higher plan. Credits roll over monthly on annual plans.',
+  },
 ];
 
 const FAQ = () => {
@@ -93,45 +115,45 @@ const FAQ = () => {
             className="lg:col-span-3 flex flex-col"
           >
             <div className="flex flex-col">
-              {faqData.map((item, index) => (
-                <div key={index} className="py-5 border-b border-border/40 last:border-b-0">
-                  <button
-                    onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                    className="w-full flex items-center justify-between text-left group"
-                  >
-                    <span className={cn(
-                      "text-[15px] md:text-[17px] font-medium transition-colors duration-300",
-                      openIndex === index ? "text-primary" : "text-foreground"
-                    )}>
-                      {item.question}
-                    </span>
-                    <div className={cn(
-                      "w-8 h-8 rounded-full border flex items-center justify-center transition-all duration-300 shrink-0 ml-4",
-                      openIndex === index
-                        ? "bg-primary border-primary text-primary-foreground"
-                        : "border-border text-muted-foreground"
-                    )}>
-                      {openIndex === index ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
-                    </div>
-                  </button>
+              {FAQS.map((item, index) => (
+                  <div key={item.id} className="py-5 border-b border-border/40 last:border-b-0">
+                    <button
+                      onClick={() => setOpenIndex(openIndex === index ? null : index)}
+                      className="w-full flex items-center justify-between text-left group"
+                    >
+                      <span className={cn(
+                        "text-[15px] md:text-[17px] font-medium transition-colors duration-300",
+                        openIndex === index ? "text-primary" : "text-foreground"
+                      )}>
+                        {item.question}
+                      </span>
+                      <div className={cn(
+                        "w-8 h-8 rounded-full border flex items-center justify-center transition-all duration-300 shrink-0 ml-4",
+                        openIndex === index
+                          ? "bg-primary border-primary text-primary-foreground"
+                          : "border-border text-muted-foreground"
+                      )}>
+                        {openIndex === index ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
+                      </div>
+                    </button>
 
-                  <AnimatePresence>
-                    {openIndex === index && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] }}
-                        className="overflow-hidden"
-                      >
-                        <p className="pt-3 text-muted-foreground text-[14px] leading-relaxed max-w-[90%]">
-                          {item.answer}
-                        </p>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              ))}
+                    <AnimatePresence>
+                      {openIndex === index && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] }}
+                          className="overflow-hidden"
+                        >
+                          <p className="pt-3 text-muted-foreground text-[14px] leading-relaxed max-w-[90%]">
+                            {item.answer}
+                          </p>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+              ))
             </div>
           </motion.div>
         </div>
