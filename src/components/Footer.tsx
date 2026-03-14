@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Youtube, Linkedin } from "lucide-react";
+import { Twitter, Linkedin } from "lucide-react";
 
 type FooterLinkItem = {
   label: string;
@@ -22,19 +22,44 @@ const links: Record<string, FooterLinkItem[]> = {
 
 const Footer = () => {
   const watermarkRef = useRef<HTMLDivElement>(null);
-  const [offset, setOffset] = useState(100);
+  const watermarkTextRef = useRef<HTMLSpanElement>(null);
+  const rafIdRef = useRef<number>(0);
+  const offsetRef = useRef(100);
 
   useEffect(() => {
-    const handleScroll = () => {
+    const applyOffset = (nextOffset: number) => {
+      const roundedOffset = Math.round(nextOffset * 100) / 100;
+      if (Math.abs(offsetRef.current - roundedOffset) < 0.5) return;
+      offsetRef.current = roundedOffset;
+
+      if (!watermarkTextRef.current) return;
+      watermarkTextRef.current.style.transform = `translate3d(0, ${roundedOffset}%, 0)`;
+    };
+
+    const updateWatermark = () => {
+      rafIdRef.current = 0;
       if (!watermarkRef.current) return;
+
       const rect = watermarkRef.current.getBoundingClientRect();
       const windowH = window.innerHeight;
       const progress = Math.max(0, Math.min(1, (windowH - rect.top) / (windowH * 0.5)));
-      setOffset(80 * (1 - progress));
+      applyOffset(80 * (1 - progress));
     };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
+
+    const scheduleUpdate = () => {
+      if (rafIdRef.current !== 0) return;
+      rafIdRef.current = window.requestAnimationFrame(updateWatermark);
+    };
+
+    scheduleUpdate();
+    window.addEventListener("scroll", scheduleUpdate, { passive: true });
+    window.addEventListener("resize", scheduleUpdate);
+
+    return () => {
+      window.removeEventListener("scroll", scheduleUpdate);
+      window.removeEventListener("resize", scheduleUpdate);
+      if (rafIdRef.current !== 0) window.cancelAnimationFrame(rafIdRef.current);
+    };
   }, []);
 
   return (
@@ -65,8 +90,8 @@ const Footer = () => {
         {/* Social boxes */}
         <div className="grid grid-cols-2 border border-background/[0.08] rounded-2xl overflow-hidden mb-16">
           <a href="#" className="flex items-center gap-3 px-7 py-6 border-r border-background/[0.08] transition-all duration-300 hover:bg-primary group">
-            <Youtube size={20} className="text-background/30 group-hover:text-primary-foreground transition-colors" />
-            <span className="text-sm font-medium text-background/40 group-hover:text-primary-foreground transition-colors">Youtube</span>
+            <Twitter size={20} className="text-background/30 group-hover:text-primary-foreground transition-colors" />
+            <span className="text-sm font-medium text-background/40 group-hover:text-primary-foreground transition-colors">X</span>
           </a>
           <a href="#" className="flex items-center gap-3 px-7 py-6 transition-all duration-300 hover:bg-primary group">
             <Linkedin size={20} className="text-background/30 group-hover:text-primary-foreground transition-colors" />
@@ -78,10 +103,11 @@ const Footer = () => {
       {/* Animated watermark */}
       <div ref={watermarkRef} className="relative h-36 md:h-52 select-none pointer-events-none flex items-end justify-center overflow-visible">
         <span
-          className="text-[10rem] md:text-[16rem] font-black font-display leading-none whitespace-nowrap tracking-tight transition-transform duration-75 ease-out"
+          ref={watermarkTextRef}
+          className="text-[10rem] md:text-[16rem] font-black font-display leading-none whitespace-nowrap tracking-tight will-change-transform"
           style={{
             color: "rgba(255,255,255,0.04)",
-            transform: `translateY(${offset}%)`,
+            transform: "translate3d(0, 100%, 0)",
           }}
         >
           Enrich it
