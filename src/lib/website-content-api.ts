@@ -38,7 +38,7 @@ export interface WebsiteContentResponse {
   faqs: WebsiteFaq[];
 }
 
-async function apiFetch<T>(path: string): Promise<T> {
+async function apiFetch<T>(path: string): Promise<T[]> {
   const url = `${getBaseUrl()}${path}`;
 
   let response: Response;
@@ -57,7 +57,11 @@ async function apiFetch<T>(path: string): Promise<T> {
   }
 
   try {
-    return (await response.json()) as T;
+    const json = await response.json();
+    // Backend returns { items: T[] } — unwrap it
+    if (json && Array.isArray(json.items)) return json.items as T[];
+    if (Array.isArray(json)) return json as T[];
+    return [] as T[];
   } catch (error) {
     throw new Error(
       `Failed to parse JSON from ${url}: ${error instanceof Error ? error.message : "Unknown error"}`,
@@ -67,18 +71,18 @@ async function apiFetch<T>(path: string): Promise<T> {
 
 export const websiteContentApi = {
   getLogos(): Promise<WebsiteLogo[]> {
-    return apiFetch<WebsiteLogo[]>("/api/website-content/logos");
+    return apiFetch<WebsiteLogo>("/api/website-content/logos");
   },
 
   getTestimonials(): Promise<WebsiteTestimonial[]> {
-    return apiFetch<WebsiteTestimonial[]>("/api/website-content/testimonials");
+    return apiFetch<WebsiteTestimonial>("/api/website-content/testimonials");
   },
 
   getFaqs(): Promise<WebsiteFaq[]> {
-    return apiFetch<WebsiteFaq[]>("/api/website-content/faqs");
+    return apiFetch<WebsiteFaq>("/api/website-content/faqs");
   },
 
   getAll(): Promise<WebsiteContentResponse> {
-    return apiFetch<WebsiteContentResponse>("/api/website-content");
+    return apiFetch<never>("/api/website-content") as unknown as Promise<WebsiteContentResponse>;
   },
 };

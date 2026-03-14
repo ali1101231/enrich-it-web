@@ -1,43 +1,40 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, Minus, ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { websiteContentApi, type WebsiteFaq } from '@/lib/website-content-api';
 
-const FAQS = [
-  {
-    id: '1',
-    question: 'What is Enrich it and how does it work?',
-    answer: 'Enrich it is a B2B data enrichment platform that helps you find, verify, and enrich contact and company data in real-time. Simply upload a list or search our database to get enriched profiles instantly.',
-  },
-  {
-    id: '2',
-    question: 'How accurate is the data?',
-    answer: 'We guarantee 99%+ email deliverability on all verified contacts. Our data is refreshed continuously using AI-powered signals from across the web, ensuring you always have the most up-to-date information.',
-  },
-  {
-    id: '3',
-    question: 'What integrations do you support?',
-    answer: 'Enrich it integrates natively with Salesforce, HubSpot, Pipedrive, Outreach, and hundreds more via our Zapier and native API. Setup takes less than 5 minutes.',
-  },
-  {
-    id: '4',
-    question: 'Is my data secure?',
-    answer: 'Yes. We are SOC 2 Type II certified and fully GDPR compliant. All data is encrypted at rest and in transit. We never sell your data to third parties.',
-  },
-  {
-    id: '5',
-    question: 'Can I try Enrich it before paying?',
-    answer: 'Absolutely. Our free plan includes 50 credits per month with no credit card required. Upgrade anytime as your team grows.',
-  },
-  {
-    id: '6',
-    question: 'What happens if I run out of credits?',
-    answer: 'You can purchase additional credits at any time, or upgrade to a higher plan. Credits roll over monthly on annual plans.',
-  },
+const FALLBACK_FAQS: WebsiteFaq[] = [
+  { id: '1', question: 'What is Enrich it and how does it work?', answer: 'Enrich it is a B2B data enrichment platform that helps you find, verify, and enrich contact and company data in real-time. Simply upload a list or search our database to get enriched profiles instantly.' },
+  { id: '2', question: 'How accurate is the data?', answer: 'We guarantee 99%+ email deliverability on all verified contacts. Our data is refreshed continuously using AI-powered signals from across the web, ensuring you always have the most up-to-date information.' },
+  { id: '3', question: 'What integrations do you support?', answer: 'Enrich it integrates natively with Salesforce, HubSpot, Pipedrive, Outreach, and hundreds more via our Zapier and native API. Setup takes less than 5 minutes.' },
+  { id: '4', question: 'Is my data secure?', answer: 'Yes. We are SOC 2 Type II certified and fully GDPR compliant. All data is encrypted at rest and in transit. We never sell your data to third parties.' },
+  { id: '5', question: 'Can I try Enrich it before paying?', answer: 'Absolutely. Our free plan includes 50 credits per month with no credit card required. Upgrade anytime as your team grows.' },
+  { id: '6', question: 'What happens if I run out of credits?', answer: 'You can purchase additional credits at any time, or upgrade to a higher plan. Credits roll over monthly on annual plans.' },
 ];
 
 const FAQ = () => {
+  const [faqs, setFaqs] = useState<WebsiteFaq[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+
+  useEffect(() => {
+    let isMounted = true;
+    websiteContentApi.getFaqs()
+      .then((data) => {
+        if (!isMounted) return;
+        const result = Array.isArray(data) && data.length > 0 ? data : FALLBACK_FAQS;
+        setFaqs(result);
+        setOpenIndex(result.length > 0 ? 0 : null);
+      })
+      .catch(() => {
+        if (!isMounted) return;
+        setFaqs(FALLBACK_FAQS);
+        setOpenIndex(0);
+      })
+      .finally(() => { if (isMounted) setIsLoading(false); });
+    return () => { isMounted = false; };
+  }, []);
 
   return (
     <section id="faq" className="py-24 lg:py-32">
@@ -115,7 +112,11 @@ const FAQ = () => {
             className="lg:col-span-3 flex flex-col"
           >
             <div className="flex flex-col">
-              {FAQS.map((item, index) => (
+              {isLoading ? (
+                <div className="py-5 border-b border-border/40">
+                  <p className="text-[15px] md:text-[17px] font-medium text-muted-foreground">Loading FAQs...</p>
+                </div>
+              ) : faqs.map((item, index) => (
                   <div key={item.id} className="py-5 border-b border-border/40 last:border-b-0">
                     <button
                       onClick={() => setOpenIndex(openIndex === index ? null : index)}
@@ -153,7 +154,7 @@ const FAQ = () => {
                       )}
                     </AnimatePresence>
                   </div>
-              ))
+              ))}
             </div>
           </motion.div>
         </div>
