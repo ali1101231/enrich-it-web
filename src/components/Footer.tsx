@@ -1,10 +1,23 @@
 import { useEffect, useRef, useState } from "react";
 import { Youtube, Linkedin } from "lucide-react";
 
-const links = {
-  Product: ["Features", "Pricing", "Blog", "Reviews", "FAQs", "Contact"],
-  Legal: ["Terms of Service", "Privacy Policy"],
-  "API Docs": ["Guide", "API Reference"],
+type FooterLinkItem = {
+  label: string;
+  href: string;
+};
+
+const links: Record<string, FooterLinkItem[]> = {
+  Product: [
+    { label: "Features", href: "#features" },
+    { label: "Pricing", href: "#pricing" },
+    { label: "Reviews", href: "#reviews" },
+    { label: "FAQs", href: "#faq" },
+    { label: "Contact", href: "#faq" },
+  ],
+  Legal: [
+    { label: "Terms of Service", href: "#" },
+    { label: "Privacy Policy", href: "#" },
+  ],
 };
 
 const Footer = () => {
@@ -31,7 +44,7 @@ const Footer = () => {
           <div className="col-span-2 md:col-span-1">
             <span className="text-xl font-bold font-display gradient-text">Enrich it</span>
             <p className="text-sm text-background/50 mt-3 leading-relaxed max-w-[220px]">
-              The data engine behind high-performing GTM teams
+              Enrichment platform for email, phone, and LinkedIn-based company data
             </p>
             <p className="text-xs text-background/30 mt-8">© 2026 Enrich it. All rights reserved.</p>
           </div>
@@ -40,8 +53,8 @@ const Footer = () => {
               <h4 className="text-sm font-semibold font-display mb-4 text-background/80">{title}</h4>
               <ul className="space-y-2.5">
                 {items.map((item) => (
-                  <li key={item}>
-                    <a href="#" className="text-sm text-background/45 hover:text-background transition-colors duration-200">{item}</a>
+                  <li key={item.label}>
+                    <a href={item.href} className="text-sm text-background/45 hover:text-background transition-colors duration-200">{item.label}</a>
                   </li>
                 ))}
               </ul>

@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 
 const stats = [
-  { value: 250, suffix: "M+", label: "Contacts in database" },
+  { value: 250, suffix: "M+", label: "Contacts indexed" },
   { value: 60, suffix: "M+", label: "Companies enriched" },
-  { value: 99, suffix: "%", label: "Email accuracy" },
+  { value: 35, suffix: "M+", label: "Domains mapped to LinkedIn URLs" },
   { value: 120, suffix: "+", label: "Countries covered" },
 ];
 
@@ -95,9 +95,9 @@ const Stats = () => (
       {/* Heading */}
       <div className="text-center mb-16">
         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-display tracking-tight text-primary-foreground/90 leading-tight">
-          The backbone of
+          Built for high-volume
           <br />
-          B2B data intelligence
+          contact and company enrichment
         </h2>
       </div>
 

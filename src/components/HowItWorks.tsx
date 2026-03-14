@@ -29,22 +29,22 @@ const steps = [
     id: 0,
     number: "01",
     icon: Upload,
-    title: "Import or Search",
-    description: "Upload your CSV or search our database of 250M+ contacts and 60M+ companies to find your ideal prospects.",
+    title: "Import your records",
+    description: "Upload contacts, domains, or company LinkedIn URLs to start your enrichment workflow.",
   },
   {
     id: 1,
     number: "02",
     icon: Sparkles,
-    title: "Enrich & Verify",
-    description: "Automatically enrich contacts with verified emails, phone numbers, company data and social profiles in real-time.",
+    title: "Run enrichment",
+    description: "Enrich emails, phones, domain-to-LinkedIn URLs, and company data from company LinkedIn URLs.",
   },
   {
     id: 2,
     number: "03",
     icon: Download,
-    title: "Export or Sync",
-    description: "Push enriched data directly to your CRM, export as CSV, or sync with your favorite tools in one click.",
+    title: "Export or sync",
+    description: "Send enriched records to your CRM, export CSVs, or integrate with your internal tools.",
   },
 ];
 
@@ -65,12 +65,12 @@ const HowItWorks = () => {
           </AnimatedContent>
           <AnimatedContent delay={0.2}>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-display tracking-tight mb-6">
-              Three steps to <span className="gradient-text">better data</span>
+              Three steps to <span className="gradient-text">enriched data</span>
             </h2>
           </AnimatedContent>
           <AnimatedContent delay={0.3}>
             <p className="text-base text-muted-foreground max-w-2xl leading-relaxed">
-              Our platform works seamlessly to find, enrich, and deliver the data you need.
+              Our platform is built for end-to-end enrichment from contact inputs to company LinkedIn-based enrichment.
               <br className="hidden md:block" /> Simple steps. Powerful results.
             </p>
           </AnimatedContent>
@@ -182,10 +182,10 @@ const HowItWorks = () => {
             <AnimatedContent delay={0.6}>
               <div className="pl-4 border-l-2 border-primary">
                 <h4 className="text-lg font-semibold font-display text-foreground mb-1">
-                  Smarter tools, bigger results.
+                  Built for enrichment teams.
                 </h4>
                 <p className="text-sm text-muted-foreground">
-                  Leverage enriched data to optimize every campaign for maximum impact.
+                  Turn basic inputs into rich contact and company profiles your team can actually use.
                 </p>
               </div>
             </AnimatedContent>

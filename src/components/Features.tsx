@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { Check, ArrowUpRight, Users, Building2, Globe } from "lucide-react";
+import { Check, ArrowUpRight, Mail, Phone, Globe } from "lucide-react";
 import { motion, useInView } from "framer-motion";
 
 interface AnimatedContentProps {
@@ -36,29 +36,30 @@ function AnimatedContent({ children, delay = 0, direction = "vertical", classNam
 }
 
 const checklist = [
-  "250M+ verified contacts",
-  "Real-time data enrichment",
+  "Email enrichment from names and domains",
+  "Phone enrichment for contact records",
+  "Company enrichment from LinkedIn URLs",
   "GDPR compliant processing",
 ];
 
 const features = [
   {
     id: 1,
-    icon: Users,
-    title: "People Finder",
-    description: "Search 250M+ contacts by role, company, location and more — instantly.",
+    icon: Mail,
+    title: "Email Enricher",
+    description: "Enrich contact records with professional email data from your input lists and workflows.",
   },
   {
     id: 2,
-    icon: Building2,
-    title: "Company Enricher",
-    description: "Get firmographic data on 60M+ companies including revenue, size, and tech stack.",
+    icon: Phone,
+    title: "Phone Enricher",
+    description: "Append phone numbers to contacts so your team can work enriched, actionable records.",
   },
   {
     id: 3,
     icon: Globe,
-    title: "Domain Search",
-    description: "Find every verified email associated with any company domain in seconds.",
+    title: "Domain & LinkedIn Enrichment",
+    description: "Map company domains to LinkedIn URLs, then enrich company profiles from company LinkedIn URLs.",
   },
 ];
 
@@ -80,13 +81,13 @@ const Features = () => {
 
             <AnimatedContent delay={0.2}>
               <h3 className="text-3xl sm:text-4xl lg:text-[40px] leading-tight font-bold font-display text-foreground tracking-tight mb-6">
-                Everything you need for <span className="gradient-text">B2B growth</span>
+                Everything you need for <span className="gradient-text">B2B enrichment</span>
               </h3>
             </AnimatedContent>
 
             <AnimatedContent delay={0.3}>
               <p className="text-base leading-relaxed text-muted-foreground mb-8">
-                Powerful tools to find, enrich, and verify your ideal customers at scale.
+                Enrich contacts and companies with email, phone, and LinkedIn-based data in one place.
               </p>
             </AnimatedContent>
 

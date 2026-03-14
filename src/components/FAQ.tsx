@@ -5,12 +5,12 @@ import { cn } from '@/lib/utils';
 import { websiteContentApi, type ContactSubmissionRequest, type WebsiteFaq } from '@/lib/website-content-api';
 
 const FALLBACK_FAQS: WebsiteFaq[] = [
-  { id: '1', question: 'What is Enrich it and how does it work?', answer: 'Enrich it is a B2B data enrichment platform that helps you find, verify, and enrich contact and company data in real-time. Simply upload a list or search our database to get enriched profiles instantly.' },
-  { id: '2', question: 'How accurate is the data?', answer: 'We guarantee 99%+ email deliverability on all verified contacts. Our data is refreshed continuously using AI-powered signals from across the web, ensuring you always have the most up-to-date information.' },
-  { id: '3', question: 'What integrations do you support?', answer: 'Enrich it integrates natively with Salesforce, HubSpot, Pipedrive, Outreach, and hundreds more via our Zapier and native API. Setup takes less than 5 minutes.' },
+  { id: '1', question: 'What is Enrich it and how does it work?', answer: 'Enrich it is a B2B enrichment platform for contacts and companies. You can enrich email and phone data, map domains to LinkedIn URLs, and enrich company information from company LinkedIn URLs.' },
+  { id: '2', question: 'Do you verify email addresses?', answer: 'No. Enrich it focuses on enrichment workflows and does not provide email verification.' },
+  { id: '3', question: 'What kind of inputs can I use?', answer: 'You can start with contact records, domains, and company LinkedIn URLs, then run enrichment to get richer contact and company profiles.' },
   { id: '4', question: 'Is my data secure?', answer: 'Yes. We are SOC 2 Type II certified and fully GDPR compliant. All data is encrypted at rest and in transit. We never sell your data to third parties.' },
-  { id: '5', question: 'Can I try Enrich it before paying?', answer: 'Absolutely. Our free plan includes 50 credits per month with no credit card required. Upgrade anytime as your team grows.' },
-  { id: '6', question: 'What happens if I run out of credits?', answer: 'You can purchase additional credits at any time, or upgrade to a higher plan. Credits roll over monthly on annual plans.' },
+  { id: '5', question: 'Can I try Enrich it before paying?', answer: 'Absolutely. You can start with a free plan and upgrade when you need more enrichment volume.' },
+  { id: '6', question: 'How do I use enriched data?', answer: 'Export enriched records as CSV or send them to your CRM and internal tools through API-based workflows.' },
 ];
 
 const INITIAL_CONTACT_FORM: ContactSubmissionRequest = {
@@ -113,18 +113,12 @@ const FAQ = () => {
               Everything you wanted<br />to ask.
             </h2>
           </div>
-          <a
-            href="#contact"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-primary-foreground font-semibold text-sm hover:bg-primary/90 transition-all duration-300 group w-fit"
-          >
-            Contact Us
-            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-          </a>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-16">
           {/* LEFT: Contact Card */}
           <motion.div
+            id="contact"
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}

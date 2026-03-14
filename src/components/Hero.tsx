@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Play, Zap, Shield, Globe, Mail, Building2, Users, X } from "lucide-react";
+import { ArrowRight, Play, Zap, Shield, Globe, Mail, Building2, X } from "lucide-react";
 
 const FloatingCard = ({ children, className, style }: { children: React.ReactNode; className?: string; style?: React.CSSProperties }) => (
   <div className={`bg-card/80 backdrop-blur-xl border border-border/50 rounded-2xl px-4 py-3 shadow-xl animate-float ${className}`} style={style}>
@@ -9,9 +9,9 @@ const FloatingCard = ({ children, className, style }: { children: React.ReactNod
 );
 
 const badges = [
-  { icon: Zap, text: "Real-time enrichment" },
-  { icon: Shield, text: "99% accuracy" },
-  { icon: Globe, text: "120+ countries" },
+  { icon: Zap, text: "Email + phone enrichment" },
+  { icon: Globe, text: "Domain → LinkedIn URL" },
+  { icon: Shield, text: "Company LinkedIn enrichment" },
 ];
 
 const Hero = () => {
@@ -28,17 +28,17 @@ const Hero = () => {
         <div className="max-w-3xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.06] px-4 py-1.5 text-xs font-medium text-primary mb-8 opacity-0 animate-fade-up" style={{ animationDelay: "0.1s" }}>
             <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse-glow" />
-            Now with AI-powered enrichment
+            Built for enrichment workflows
           </div>
 
           <h1 className="text-5xl sm:text-6xl lg:text-[4.5rem] font-extrabold font-display tracking-tight leading-[1.08] mb-6 opacity-0 animate-fade-up" style={{ animationDelay: "0.2s" }}>
-            The Growth Engine
+            Enrich B2B Contacts
             <br />
-            for <span className="gradient-text">B2B Data</span>
+            & <span className="gradient-text">Companies</span>
           </h1>
 
           <p className="text-lg text-muted-foreground max-w-xl mx-auto mb-10 leading-relaxed opacity-0 animate-fade-up" style={{ animationDelay: "0.35s" }}>
-            Find people, enrich companies, verify emails, and build better lead lists — all in one blazing-fast platform.
+            Enrich email and phone data, map domains to LinkedIn URLs, and enrich company profiles from company LinkedIn URLs.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 opacity-0 animate-fade-up" style={{ animationDelay: "0.5s" }}>
@@ -65,20 +65,20 @@ const Hero = () => {
           <FloatingCard className="absolute top-[28%] left-8 xl:left-16" style={{ animationDelay: "0s" }}>
             <div className="flex items-center gap-2.5 text-xs">
               <Mail size={15} className="text-primary" />
-              <span className="text-muted-foreground font-medium">Email verified</span>
-              <span className="text-accent text-[11px] font-semibold">✓ 99.2%</span>
+              <span className="text-muted-foreground font-medium">Email enriched</span>
+              <span className="text-accent text-[11px] font-semibold">from name + domain</span>
             </div>
           </FloatingCard>
           <FloatingCard className="absolute top-[38%] right-8 xl:right-16" style={{ animationDelay: "2s" }}>
             <div className="flex items-center gap-2.5 text-xs">
               <Building2 size={15} className="text-accent" />
-              <span className="text-muted-foreground font-medium">Company enriched</span>
+              <span className="text-muted-foreground font-medium">Company enriched from LinkedIn URL</span>
             </div>
           </FloatingCard>
           <FloatingCard className="absolute bottom-[26%] left-16 xl:left-28" style={{ animationDelay: "4s" }}>
             <div className="flex items-center gap-2.5 text-xs">
-              <Users size={15} className="text-primary" />
-              <span className="text-muted-foreground font-medium">+2,450 leads found</span>
+              <Globe size={15} className="text-primary" />
+              <span className="text-muted-foreground font-medium">Domain mapped to LinkedIn URL</span>
             </div>
           </FloatingCard>
         </div>
