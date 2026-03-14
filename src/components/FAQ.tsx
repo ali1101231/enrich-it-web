@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, Minus, ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { websiteContentApi, type WebsiteFaq } from '@/lib/website-content-api';
+import { websiteContentApi, type ContactSubmissionRequest, type WebsiteFaq } from '@/lib/website-content-api';
 
 const FALLBACK_FAQS: WebsiteFaq[] = [
   { id: '1', question: 'What is Enrich it and how does it work?', answer: 'Enrich it is a B2B data enrichment platform that helps you find, verify, and enrich contact and company data in real-time. Simply upload a list or search our database to get enriched profiles instantly.' },
@@ -13,10 +13,23 @@ const FALLBACK_FAQS: WebsiteFaq[] = [
   { id: '6', question: 'What happens if I run out of credits?', answer: 'You can purchase additional credits at any time, or upgrade to a higher plan. Credits roll over monthly on annual plans.' },
 ];
 
+const INITIAL_CONTACT_FORM: ContactSubmissionRequest = {
+  fullName: '',
+  email: '',
+  company: '',
+  phone: '',
+  subject: '',
+  message: '',
+};
+
 const FAQ = () => {
   const [faqs, setFaqs] = useState<WebsiteFaq[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [contactForm, setContactForm] = useState<ContactSubmissionRequest>(INITIAL_CONTACT_FORM);
+  const [isSubmittingContact, setIsSubmittingContact] = useState(false);
+  const [contactError, setContactError] = useState<string | null>(null);
+  const [contactSuccess, setContactSuccess] = useState<string | null>(null);
 
   useEffect(() => {
     let isMounted = true;
@@ -35,6 +48,56 @@ const FAQ = () => {
       .finally(() => { if (isMounted) setIsLoading(false); });
     return () => { isMounted = false; };
   }, []);
+
+  const handleContactInputChange = (field: keyof ContactSubmissionRequest, value: string) => {
+    setContactForm((prev) => ({ ...prev, [field]: value }));
+    if (contactError) setContactError(null);
+    if (contactSuccess) setContactSuccess(null);
+  };
+
+  const handleContactSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    if (isSubmittingContact) return;
+
+    const fullName = contactForm.fullName.trim();
+    const email = contactForm.email.trim();
+    const message = contactForm.message.trim();
+
+    if (!fullName || !email || !message) {
+      setContactSuccess(null);
+      setContactError('Please fill in full name, email, and message.');
+      return;
+    }
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(email)) {
+      setContactSuccess(null);
+      setContactError('Please enter a valid email address.');
+      return;
+    }
+
+    setIsSubmittingContact(true);
+    setContactError(null);
+    setContactSuccess(null);
+
+    try {
+      await websiteContentApi.submitContactForm({
+        fullName,
+        email,
+        company: contactForm.company.trim(),
+        phone: contactForm.phone.trim(),
+        subject: contactForm.subject.trim(),
+        message,
+      });
+      setContactForm(INITIAL_CONTACT_FORM);
+      setContactSuccess('Thanks! Your message has been submitted successfully.');
+    } catch {
+      setContactError('Unable to submit your message right now. Please try again.');
+    } finally {
+      setIsSubmittingContact(false);
+    }
+  };
 
   return (
     <section id="faq" className="py-24 lg:py-32">
@@ -70,11 +133,14 @@ const FAQ = () => {
           >
             <h3 className="text-2xl font-bold font-display text-foreground mb-6">Contact Us</h3>
 
-            <div className="space-y-4 mb-6">
+            <form onSubmit={handleContactSubmit} className="space-y-4">
               <div>
                 <label className="text-xs font-medium text-muted-foreground mb-1.5 block">Name</label>
                 <input
                   type="text"
+                  required
+                  value={contactForm.fullName}
+                  onChange={(event) => handleContactInputChange('fullName', event.target.value)}
                   placeholder="Your name"
                   className="w-full px-4 py-3 rounded-xl bg-secondary/50 border border-border/50 text-foreground text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all"
                 />
@@ -83,6 +149,9 @@ const FAQ = () => {
                 <label className="text-xs font-medium text-muted-foreground mb-1.5 block">Email</label>
                 <input
                   type="email"
+                  required
+                  value={contactForm.email}
+                  onChange={(event) => handleContactInputChange('email', event.target.value)}
                   placeholder="you@company.com"
                   className="w-full px-4 py-3 rounded-xl bg-secondary/50 border border-border/50 text-foreground text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all"
                 />
@@ -91,16 +160,30 @@ const FAQ = () => {
                 <label className="text-xs font-medium text-muted-foreground mb-1.5 block">Message</label>
                 <textarea
                   rows={4}
+                  required
+                  value={contactForm.message}
+                  onChange={(event) => handleContactInputChange('message', event.target.value)}
                   placeholder="How can we help?"
                   className="w-full px-4 py-3 rounded-xl bg-secondary/50 border border-border/50 text-foreground text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all resize-none"
                 />
               </div>
-            </div>
 
-            <button className="w-full gradient-primary text-primary-foreground py-4 rounded-full font-semibold text-sm flex items-center justify-center gap-2 transition-all duration-300 group hover:brightness-110">
-              Send Message
-              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-            </button>
+              <button
+                type="submit"
+                disabled={isSubmittingContact}
+                className="w-full gradient-primary text-primary-foreground py-4 rounded-full font-semibold text-sm flex items-center justify-center gap-2 transition-all duration-300 group hover:brightness-110 disabled:opacity-70 disabled:cursor-not-allowed"
+              >
+                {isSubmittingContact ? 'Sending...' : 'Send Message'}
+                {!isSubmittingContact && <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />}
+              </button>
+
+              {contactError && (
+                <p className="text-sm text-destructive">{contactError}</p>
+              )}
+              {contactSuccess && (
+                <p className="text-sm text-primary">{contactSuccess}</p>
+              )}
+            </form>
           </motion.div>
 
           {/* RIGHT: FAQ Accordion */}
