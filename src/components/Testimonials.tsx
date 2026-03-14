@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 import { MessageSquare, Star } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { websiteContentApi, type WebsiteTestimonial } from '@/lib/website-content-api';
 
 interface Testimonial {
   id: string;
@@ -9,7 +10,20 @@ interface Testimonial {
   clientName: string;
   clientRole?: string;
   companyName?: string;
+  avatarUrl?: string;
   rating?: number;
+}
+
+function normalize(t: WebsiteTestimonial & Record<string, unknown>): Testimonial {
+  return {
+    id: String(t.id),
+    quote: (t['quote'] as string | undefined) ?? t.content ?? '',
+    clientName: (t['clientName'] as string | undefined) ?? t.authorName ?? 'Anonymous',
+    clientRole: (t['clientRole'] as string | undefined) ?? t.authorTitle,
+    companyName: t['companyName'] as string | undefined,
+    avatarUrl: (t['avatarUrl'] as string | undefined) ?? t.authorAvatarUrl,
+    rating: t.rating,
+  };
 }
 
 function getInitials(name: string): string {
@@ -19,7 +33,7 @@ function getInitials(name: string): string {
   return `${parts[0][0]}${parts[1][0]}`.toUpperCase();
 }
 
-const TESTIMONIALS: Testimonial[] = [
+const FALLBACK: Testimonial[] = [
   { id: '1', quote: 'Enrich it cut our prospecting time in half. The data quality is unmatched — we\'ve never had bounce rates this low.', clientName: 'Sarah Chen', clientRole: 'Head of Growth', companyName: 'Vercel', rating: 5 },
   { id: '2', quote: 'We tried every enrichment tool on the market. Enrich it is the only one that consistently delivers accurate, fresh data at scale.', clientName: 'Marcus Webb', clientRole: 'VP of Sales', companyName: 'Stripe', rating: 5 },
   { id: '3', quote: 'The HubSpot integration is seamless. Our SDRs now spend 80% of their time selling instead of researching.', clientName: 'Priya Nair', clientRole: 'Sales Ops Manager', companyName: 'Notion', rating: 5 },
@@ -28,9 +42,27 @@ const TESTIMONIALS: Testimonial[] = [
   { id: '6', quote: 'Our outbound conversion rate went up 3x after switching. The intent signals feature is a game changer.', clientName: 'Tom Lindqvist', clientRole: 'Director of Demand Gen', companyName: 'Figma', rating: 5 },
 ];
 
-const duplicatedTestimonials = [...TESTIMONIALS, ...TESTIMONIALS, ...TESTIMONIALS];
-
 const Testimonials = ({ className }: { className?: string }) => {
+  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    let isMounted = true;
+    websiteContentApi.getTestimonials()
+      .then((data) => {
+        if (!isMounted) return;
+        const result = data.length > 0 ? data.map((t) => normalize(t as WebsiteTestimonial & Record<string, unknown>)) : FALLBACK;
+        setTestimonials(result);
+      })
+      .catch(() => { if (isMounted) setTestimonials(FALLBACK); })
+      .finally(() => { if (isMounted) setIsLoading(false); });
+    return () => { isMounted = false; };
+  }, []);
+
+  const duplicatedTestimonials = useMemo(
+    () => [...testimonials, ...testimonials, ...testimonials],
+    [testimonials],
+  );
 
   return (
     <section className={cn("py-24 lg:py-32 overflow-hidden", className)}>
@@ -65,7 +97,11 @@ const Testimonials = ({ className }: { className?: string }) => {
 
         <div className="overflow-hidden">
           <div className="flex gap-6 animate-scroll-testimonials w-max">
-            {duplicatedTestimonials.map((testimonial, idx) => (
+            {isLoading ? (
+              <div className="min-w-[360px] max-w-[380px] flex-shrink-0 bg-card rounded-2xl border border-border/50 p-7 flex items-center justify-center">
+                <p className="text-sm text-muted-foreground">Loading testimonials...</p>
+              </div>
+            ) : duplicatedTestimonials.map((testimonial, idx) => (
                 <div
                   key={`${testimonial.id}-${idx}`}
                   className="min-w-[360px] max-w-[380px] flex-shrink-0 bg-card rounded-2xl border border-border/50 p-7 flex flex-col justify-between hover:border-primary/30 transition-all duration-300"
